@@ -5,7 +5,7 @@
 ## 사용법
 
 ```html
-<link rel="stylesheet" href="YK_neu-bootstrap.css">
+<link rel="stylesheet" href="neu-bootstrap.css">
 <body class="yk-body">
   <div class="yk-card">Hello World</div>
 </body>
@@ -16,26 +16,26 @@
 ### Neumorphism (5종)
 | 파일 | 성격 | 배경 |
 |------|------|------|
-| `YK_neu-bootstrap.css` | 클래식 뉴모피즘, Bootstrap 느낌 | Light (#e0e5ec) |
-| `YK_ui-neumorphism.css` | 다크 뉴모피즘, React 라이브러리 스타일 | Dark (#292d35) |
-| `YK_neumorphism-io.css` | 크림색 초부드러운 뉴모피즘 | Light (#eff0f4) |
-| `YK_soft-ui-2026.css` | 2026 최신 Soft UI, Samsung 영감 | Light (#eceef1) |
-| `YK_claymorphism.css` | 장난감 같은 3D, 밝은 회색 기반 | Light (#f2f3f7) |
+| `neu-bootstrap.css` | 클래식 뉴모피즘, Bootstrap 느낌 | Light (#e0e5ec) |
+| `ui-neumorphism.css` | 다크 뉴모피즘, React 라이브러리 스타일 | Dark (#292d35) |
+| `neumorphism-io.css` | 크림색 초부드러운 뉴모피즘 | Light (#eff0f4) |
+| `soft-ui-2026.css` | 2026 최신 Soft UI, Samsung 영감 | Light (#eceef1) |
+| `claymorphism.css` | 장난감 같은 3D, 밝은 회색 기반 | Light (#f2f3f7) |
 
 ### Modern Trends (3종)
 | 파일 | 성격 | 배경 |
 |------|------|------|
-| `YK_neo-brutalism.css` | 두꺼운 테두리, 하드 셰도우, 대담한 색 | Light (#fef6e4) |
-| `YK_soft-brutalism.css` | 부드러운 브루탈리즘, 파스텔 어스톤 | Light (#f5f0e8) |
-| `YK_bento-grid.css` | Apple 영감 모듈형, 깔끔 미니멀 | Light (#f8f9fa) |
+| `neo-brutalism.css` | 두꺼운 테두리, 하드 셰도우, 대담한 색 | Light (#fef6e4) |
+| `soft-brutalism.css` | 부드러운 브루탈리즘, 파스텔 어스톤 | Light (#f5f0e8) |
+| `bento-grid.css` | Apple 영감 모듈형, 깔끔 미니멀 | Light (#f8f9fa) |
 
 ### CLI / Retro (4종)
 | 파일 | 성격 | 배경 |
 |------|------|------|
-| `YK_hacker-terminal.css` | CRT 녹색 터미널, 스캔라인 | Dark (#0a0a0a) |
-| `YK_claude-cli.css` | Anthropic 터미널, 보라/청록 | Dark (#1a1625) |
-| `YK_windows-98.css` | Windows 98 3D 베벨, 회색 표면 | Teal (#008080) |
-| `YK_bootstra-386.css` | 1980년대 DOS, 파란 배경, 픽셀 폰트 | Blue (#0000aa) |
+| `hacker-terminal.css` | CRT 녹색 터미널, 스캔라인 | Dark (#0a0a0a) |
+| `claude-cli.css` | Anthropic 터미널, 보라/청록 | Dark (#1a1625) |
+| `windows-98.css` | Windows 98 3D 베벨, 회색 표면 | Teal (#008080) |
+| `bootstra-386.css` | 1980년대 DOS, 파란 배경, 픽셀 폰트 | Blue (#0000aa) |
 
 ## 공통 컴포넌트
 
