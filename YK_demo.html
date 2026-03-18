@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YK Design System — Component Showcase</title>
+<link id="themeCSS" rel="stylesheet" href="YK_neu-bootstrap.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;padding:2rem 1.5rem 8rem;max-width:1100px;margin:0 auto}
+h1{font-size:1.6rem;font-weight:800;margin-bottom:0.25rem}
+h2{font-size:1.1rem;font-weight:600;margin:2rem 0 1rem;opacity:0.7}
+.subtitle{font-size:0.85rem;opacity:0.6;margin-bottom:2rem}
+.theme-id{font-size:0.75rem;opacity:0.5;margin-top:0.5rem}
+.section{margin-bottom:2.5rem}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.col{flex:1;min-width:200px}
+
+/* Switcher */
+.sw{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(0,0,0,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:12px 1rem;border-top:1px solid rgba(255,255,255,0.1)}
+.sw-label{color:rgba(255,255,255,0.5);font-size:0.55rem;text-align:center;margin-bottom:6px;letter-spacing:0.1em;text-transform:uppercase;font-family:system-ui}
+.sw-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;max-width:1000px;margin:0 auto}
+.sw-btn{padding:5px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.6);font-family:system-ui;font-size:0.6rem;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.sw-btn:hover{background:rgba(255,255,255,0.1);color:#fff}
+.sw-btn.active{background:rgba(100,180,255,0.2);border-color:rgba(100,180,255,0.5);color:#fff}
+</style>
+</head>
+<body class="yk-body">
+
+<h1>YK_ Design System</h1>
+<p class="subtitle">Component showcase · 12 themes · Switch below to compare</p>
+<p class="theme-id" id="tid">Current: YK_neu-bootstrap</p>
+
+<div class="section">
+<h2>Metric cards</h2>
+<div class="yk-grid-4">
+<div class="yk-metric"><div class="yk-metric-label">Users</div><div class="yk-metric-value" style="color:var(--yk-primary)">12,480</div></div>
+<div class="yk-metric"><div class="yk-metric-label">Revenue</div><div class="yk-metric-value" style="color:var(--yk-secondary,var(--yk-primary))">₩84M</div></div>
+<div class="yk-metric"><div class="yk-metric-label">Growth</div><div class="yk-metric-value" style="color:var(--yk-success)">+23%</div></div>
+<div class="yk-metric"><div class="yk-metric-label">Churn</div><div class="yk-metric-value" style="color:var(--yk-danger)">2.1%</div></div>
+</div>
+</div>
+
+<div class="section">
+<h2>Cards</h2>
+<div class="yk-grid-3">
+<div class="yk-card"><strong>Default card</strong><br><span style="font-size:0.8rem;color:var(--yk-text-secondary)">Hover to see interaction</span></div>
+<div class="yk-card"><span class="yk-badge">New</span> <span class="yk-badge-success">Active</span> <span class="yk-badge-danger">Urgent</span><br><span style="font-size:0.8rem;color:var(--yk-text-secondary);margin-top:8px;display:block">Badge variants</span></div>
+<div class="yk-card"><strong>Card with content</strong><br><span style="font-size:0.78rem;color:var(--yk-text-secondary);line-height:1.5;display:block;margin-top:6px">Each theme applies its own shadow, radius, and border style to create a distinct identity.</span></div>
+</div>
+</div>
+
+<div class="section">
+<h2>Buttons</h2>
+<div class="row">
+<button class="yk-btn">Default</button>
+<button class="yk-btn yk-btn-primary">Primary</button>
+<button class="yk-btn yk-btn-success">Success</button>
+<button class="yk-btn yk-btn-danger">Danger</button>
+</div>
+</div>
+
+<div class="section">
+<h2>Inputs</h2>
+<div class="yk-grid-2">
+<div><input class="yk-input" placeholder="Text input..." type="text"></div>
+<div><input class="yk-input" placeholder="Search..." type="search"></div>
+</div>
+</div>
+
+<div class="section">
+<h2>Alerts</h2>
+<div class="yk-alert yk-mb-2"><div class="yk-alert-title">Info alert</div><div class="yk-alert-desc">This is an informational message with default styling.</div></div>
+<div class="yk-alert yk-alert-success yk-mb-2"><div class="yk-alert-title">Success</div><div class="yk-alert-desc">Operation completed successfully.</div></div>
+<div class="yk-alert yk-alert-danger"><div class="yk-alert-title">Error</div><div class="yk-alert-desc">Something went wrong. Please try again.</div></div>
+</div>
+
+<div class="section">
+<h2>Panel</h2>
+<div class="yk-panel">
+<div class="yk-panel-title"><span class="yk-dot"></span>Panel with title</div>
+<p style="font-size:0.82rem;color:var(--yk-text-secondary);line-height:1.6">This panel component is designed for containing charts, tables, or grouped content. The title includes a colored dot indicator.</p>
+</div>
+</div>
+
+<div class="sw">
+<div class="sw-label">YK_ Design System Theme</div>
+<div class="sw-grid">
+<button class="sw-btn active" data-css="YK_neu-bootstrap.css" data-name="YK_neu-bootstrap">☁️ Neu Bootstrap</button>
+<button class="sw-btn" data-css="YK_ui-neumorphism.css" data-name="YK_ui-neumorphism">🌑 ui-neumorphism</button>
+<button class="sw-btn" data-css="YK_neumorphism-io.css" data-name="YK_neumorphism-io">🫧 neumorphism.io</button>
+<button class="sw-btn" data-css="YK_soft-ui-2026.css" data-name="YK_soft-ui-2026">🧸 Soft UI 2026</button>
+<button class="sw-btn" data-css="YK_claymorphism.css" data-name="YK_claymorphism">🧁 Claymorphism</button>
+<button class="sw-btn" data-css="YK_neo-brutalism.css" data-name="YK_neo-brutalism">⚡ Neo-Brutalism</button>
+<button class="sw-btn" data-css="YK_soft-brutalism.css" data-name="YK_soft-brutalism">📰 Soft Brutalism</button>
+<button class="sw-btn" data-css="YK_bento-grid.css" data-name="YK_bento-grid">🍱 Bento Grid</button>
+<button class="sw-btn" data-css="YK_hacker-terminal.css" data-name="YK_hacker-terminal">🖥️ Hacker Terminal</button>
+<button class="sw-btn" data-css="YK_claude-cli.css" data-name="YK_claude-cli">🤖 Claude CLI</button>
+<button class="sw-btn" data-css="YK_windows-98.css" data-name="YK_windows-98">💾 Windows 98</button>
+<button class="sw-btn" data-css="YK_bootstra-386.css" data-name="YK_bootstra-386">📟 BOOTSTRA.386</button>
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.sw-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.getElementById('themeCSS').href = this.getAttribute('data-css');
+    document.getElementById('tid').textContent = 'Current: ' + this.getAttribute('data-name');
+    document.querySelectorAll('.sw-btn').forEach(function(x){x.classList.remove('active')});
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

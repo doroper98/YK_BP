@@ -1,0 +1,17 @@
+/* YK_windows-98.css — Windows 98 (3D bevel buttons, gray surface, pixel font, teal desktop) */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+:root{--yk-bg:#008080;--yk-surface:#c0c0c0;--yk-surface-hover:#d4d0c8;--yk-shadow-raised:inset -2px -2px 0 #808080,inset 2px 2px 0 #fff,inset -3px -3px 0 #404040,inset 3px 3px 0 #dfdfdf;--yk-shadow-inset:inset 2px 2px 0 #808080,inset -2px -2px 0 #fff;--yk-shadow-sm:inset -1px -1px 0 #808080,inset 1px 1px 0 #fff;--yk-border:none;--yk-font:'Space Mono',monospace;--yk-text:#000;--yk-text-secondary:#333;--yk-text-muted:#808080;--yk-primary:#000080;--yk-primary-soft:rgba(0,0,128,0.1);--yk-danger:#ff0000;--yk-danger-soft:rgba(255,0,0,0.08);--yk-success:#008000;--yk-success-soft:rgba(0,128,0,0.08);--yk-warning:#808000;--yk-warning-soft:rgba(128,128,0,0.1);--yk-radius:0;--yk-radius-sm:0;--yk-gap:8px;--yk-transition:none}
+.yk-body{font-family:var(--yk-font);background:var(--yk-bg);color:var(--yk-text);line-height:1.4;font-size:0.82rem}
+.yk-card{background:var(--yk-surface);border-radius:0;box-shadow:var(--yk-shadow-raised);padding:1.25rem}.yk-card:hover{background:var(--yk-surface-hover)}
+/* Title bar */
+.yk-titlebar{background:linear-gradient(90deg,#000080,#1084d0);color:#fff;padding:3px 6px;font-weight:700;font-size:.75rem;margin:-1.25rem -1.25rem .75rem;display:flex;justify-content:space-between;align-items:center}
+.yk-titlebar-btns{display:flex;gap:2px}
+.yk-titlebar-btn{width:16px;height:14px;background:#c0c0c0;box-shadow:inset -1px -1px 0 #808080,inset 1px 1px 0 #fff;border:none;font-size:8px;line-height:14px;text-align:center;cursor:pointer}
+.yk-btn{font-family:var(--yk-font);font-size:.78rem;padding:4px 16px;border:none;background:var(--yk-surface);color:var(--yk-text);box-shadow:var(--yk-shadow-raised);cursor:pointer}.yk-btn:active{box-shadow:var(--yk-shadow-inset)}
+.yk-btn-primary{background:var(--yk-surface)}
+.yk-badge{display:inline-block;font-size:.68rem;padding:1px 6px;background:var(--yk-primary);color:#fff}
+.yk-input{font-family:var(--yk-font);font-size:.78rem;padding:4px 6px;border:none;background:#fff;color:#000;box-shadow:var(--yk-shadow-inset);outline:none;width:100%}.yk-input:focus{outline:1px dotted #000}
+.yk-alert{padding:.75rem;box-shadow:var(--yk-shadow-sm);border-left:3px solid var(--yk-primary);background:var(--yk-primary-soft);font-size:.78rem}.yk-alert-danger{border-color:var(--yk-danger);background:var(--yk-danger-soft)}.yk-alert-title{font-weight:700;margin-bottom:2px}.yk-alert-desc{color:var(--yk-text-secondary);font-size:.72rem}
+.yk-metric{background:var(--yk-surface);box-shadow:var(--yk-shadow-raised);padding:.75rem}.yk-metric-label{font-size:.65rem;color:var(--yk-text-muted);text-transform:uppercase;margin-bottom:2px}.yk-metric-value{font-size:1.2rem;font-weight:700}
+.yk-panel{background:var(--yk-surface);box-shadow:var(--yk-shadow-raised);padding:1rem}
+.yk-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--yk-gap)}.yk-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--yk-gap)}
