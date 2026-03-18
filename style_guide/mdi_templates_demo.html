@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MDI Multi-Tab Dashboard — 10 Templates</title>
+<title>MDI Multi-Tab Dashboard — 15 Templates</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Manrope:wght@300;400;500;600;700;800&family=Rubik:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
@@ -18,6 +18,32 @@
 [data-mdi="naive"]{--sb-w:240px;--sb-bg:#18181c;--sb-text:rgba(255,255,255,0.5);--sb-hover:rgba(255,255,255,0.04);--sb-abg:rgba(99,226,183,0.1);--sb-atx:#63e2b7;--sb-lbg:#18181c;--tbg:#1e1e22;--tbd:#2d2d30;--ti:#28282c;--tia:#63e2b7;--tit:#ffffffa0;--tiat:#18181c;--th:36px;--tr:6px;--topbg:#1e1e22;--toph:52px;--topbd:#2d2d30;--pg:#101014;--cd:#1e1e22;--cbd:#2d2d30;--csh:none;--cr:8px;--tx:#ffffffd1;--tx2:#ffffff80;--tx3:#ffffff33;--ac:#63e2b7;--acs:rgba(99,226,183,0.08);--su:#63e2b7;--da:#e88080;--wa:#f2c97d;--ft:'Manrope','Noto Sans KR',sans-serif;--fs:14px}
 [data-mdi="fantastic"]{--sb-w:230px;--sb-bg:#fff;--sb-text:#6b7280;--sb-hover:rgba(124,58,237,0.04);--sb-abg:rgba(124,58,237,0.08);--sb-atx:#7c3aed;--sb-lbg:#fff;--tbg:#fafafa;--tbd:#e5e7eb;--ti:#fff;--tia:#7c3aed;--tit:#6b7280;--tiat:#fff;--th:36px;--tr:8px;--topbg:#fff;--toph:56px;--topbd:#e5e7eb;--pg:#f3f4f6;--cd:#fff;--cbd:#e5e7eb;--csh:0 1px 3px rgba(0,0,0,0.04);--cr:12px;--tx:#111827;--tx2:#6b7280;--tx3:#d1d5db;--ac:#7c3aed;--acs:rgba(124,58,237,0.06);--su:#10b981;--da:#ef4444;--wa:#f59e0b;--ft:'Plus Jakarta Sans','Noto Sans KR',sans-serif;--fs:14px}
 [data-mdi="mdijs"]{--sb-w:200px;--sb-bg:#1e1e2e;--sb-text:rgba(205,214,244,0.5);--sb-hover:rgba(205,214,244,0.06);--sb-abg:rgba(137,180,250,0.12);--sb-atx:#89b4fa;--sb-lbg:#1e1e2e;--tbg:#181825;--tbd:#313244;--ti:#1e1e2e;--tia:#89b4fa;--tit:#bac2de;--tiat:#1e1e2e;--th:34px;--tr:6px;--topbg:#181825;--toph:40px;--topbd:#313244;--pg:#11111b;--cd:#1e1e2e;--cbd:#313244;--csh:none;--cr:8px;--tx:#cdd6f4;--tx2:#bac2de;--tx3:#585b70;--ac:#89b4fa;--acs:rgba(137,180,250,0.08);--su:#a6e3a1;--da:#f38ba8;--wa:#f9e2af;--ft:'Fira Code','Noto Sans KR',monospace;--fs:13px}
+
+/* ===== CONNECTED TAB THEMES ===== */
+[data-mdi="ct-chrome"]{--sb-w:220px;--sb-bg:#dee1e6;--sb-text:#5f6368;--sb-hover:#d0d3d8;--sb-abg:#fff;--sb-atx:#1a73e8;--sb-lbg:#dee1e6;--tbg:#dee1e6;--tbd:transparent;--ti:#c8ccd1;--tia:#fff;--tit:#5f6368;--tiat:#202124;--th:38px;--tr:10px 10px 0 0;--topbg:#fff;--toph:0px;--topbd:transparent;--pg:#fff;--cd:#fff;--cbd:#e8eaed;--csh:0 1px 3px rgba(0,0,0,0.06);--cr:12px;--tx:#202124;--tx2:#5f6368;--tx3:#9aa0a6;--ac:#1a73e8;--acs:rgba(26,115,232,0.08);--su:#188038;--da:#d93025;--wa:#f29900;--ft:'Inter','Noto Sans KR',sans-serif;--fs:14px}
+[data-mdi="ct-notion"]{--sb-w:240px;--sb-bg:#f7f6f3;--sb-text:#73726e;--sb-hover:rgba(55,53,47,0.04);--sb-abg:rgba(55,53,47,0.08);--sb-atx:#37352f;--sb-lbg:#f7f6f3;--tbg:#fff;--tbd:transparent;--ti:transparent;--tia:#fff;--tit:#73726e;--tiat:#37352f;--th:40px;--tr:0;--topbg:#fff;--toph:0px;--topbd:transparent;--pg:#fff;--cd:#fff;--cbd:#e9e9e7;--csh:none;--cr:6px;--tx:#37352f;--tx2:#73726e;--tx3:#b4b4b0;--ac:#2eaadc;--acs:rgba(46,170,220,0.08);--su:#0f7b0f;--da:#e03e3e;--wa:#dfab01;--ft:'Inter','Noto Sans KR',sans-serif;--fs:14px}
+[data-mdi="ct-maham"]{--sb-w:70px;--sb-bg:#f8f8fa;--sb-text:#8b8d97;--sb-hover:rgba(0,0,0,0.04);--sb-abg:rgba(99,102,241,0.08);--sb-atx:#6366f1;--sb-lbg:#f8f8fa;--tbg:#f0f0f4;--tbd:transparent;--ti:#e8e8ee;--tia:#fff;--tit:#8b8d97;--tiat:#1e1e2d;--th:42px;--tr:12px 12px 0 0;--topbg:#fff;--toph:0px;--topbd:transparent;--pg:#fff;--cd:#fff;--cbd:#f0f0f4;--csh:0 1px 4px rgba(0,0,0,0.04);--cr:16px;--tx:#1e1e2d;--tx2:#8b8d97;--tx3:#c5c6cd;--ac:#6366f1;--acs:rgba(99,102,241,0.06);--su:#22c55e;--da:#ef4444;--wa:#f59e0b;--ft:'Plus Jakarta Sans','Noto Sans KR',sans-serif;--fs:14px}
+[data-mdi="ct-vscode"]{--sb-w:48px;--sb-bg:#252526;--sb-text:#858585;--sb-hover:rgba(255,255,255,0.08);--sb-abg:transparent;--sb-atx:#fff;--sb-lbg:#252526;--tbg:#252526;--tbd:transparent;--ti:#2d2d2d;--tia:#1e1e1e;--tit:#969696;--tiat:#fff;--th:36px;--tr:0;--topbg:#1e1e1e;--toph:0px;--topbd:transparent;--pg:#1e1e1e;--cd:#252526;--cbd:#3c3c3c;--csh:none;--cr:4px;--tx:#d4d4d4;--tx2:#858585;--tx3:#4d4d4d;--ac:#007acc;--acs:rgba(0,122,204,0.12);--su:#4ec9b0;--da:#f44747;--wa:#dcdcaa;--ft:'Fira Code','Noto Sans KR',monospace;--fs:13px}
+[data-mdi="ct-arc"]{--sb-w:54px;--sb-bg:#1c1c28;--sb-text:rgba(255,255,255,0.4);--sb-hover:rgba(255,255,255,0.06);--sb-abg:rgba(178,130,255,0.15);--sb-atx:#b282ff;--sb-lbg:#1c1c28;--tbg:#12121c;--tbd:transparent;--ti:rgba(255,255,255,0.04);--tia:#1c1c28;--tit:rgba(255,255,255,0.4);--tiat:#e8e4f0;--th:40px;--tr:12px 12px 0 0;--topbg:#1c1c28;--toph:0px;--topbd:transparent;--pg:#1c1c28;--cd:#242436;--cbd:#2e2e42;--csh:none;--cr:14px;--tx:#e8e4f0;--tx2:rgba(232,228,240,0.5);--tx3:rgba(232,228,240,0.2);--ac:#b282ff;--acs:rgba(178,130,255,0.1);--su:#69db7c;--da:#ff6b6b;--wa:#ffd43b;--ft:'Plus Jakarta Sans','Noto Sans KR',sans-serif;--fs:13px}
+
+/* Connected Tab overrides: active tab bg = content bg, no bottom border */
+[data-mdi^="ct-"] .tagbar{border-bottom:none;align-items:flex-end;padding-bottom:0}
+[data-mdi^="ct-"] .tag.active{border-bottom:none;border-color:transparent;box-shadow:0 -2px 6px rgba(0,0,0,0.04)}
+[data-mdi^="ct-"] .tag{border:none;margin-bottom:0;border-bottom:none}
+[data-mdi="ct-chrome"] .tag.active{background:var(--pg);color:var(--tx);border-radius:10px 10px 0 0;position:relative}
+[data-mdi="ct-notion"] .tag{padding:8px 14px;border-radius:0}.tag-ul{display:none}
+[data-mdi="ct-notion"] .tag.active{border-bottom:2px solid var(--ac);background:transparent;color:var(--tx);font-weight:600}
+[data-mdi="ct-notion"] .tagbar{border-bottom:1px solid #e9e9e7}
+[data-mdi="ct-maham"] .tag.active{background:var(--pg);color:var(--tx);font-weight:600;padding:8px 18px;position:relative}
+[data-mdi="ct-maham"] .sb-item{flex-direction:column;gap:4px;padding:12px 8px;font-size:0.55rem;text-align:center;border-left:none;border-radius:10px;margin:2px 6px}
+[data-mdi="ct-vscode"] .tag{border-radius:0;padding:6px 14px;border-right:1px solid #252526}
+[data-mdi="ct-vscode"] .tag.active{background:var(--pg);color:#fff;border-top:1px solid var(--ac)}
+[data-mdi="ct-vscode"] .sb-item{justify-content:center;padding:12px 0;border-left:none;border-left:2px solid transparent}
+[data-mdi="ct-vscode"] .sb-item.active{border-left-color:var(--ac)}
+[data-mdi="ct-vscode"] .sb-item svg{width:22px;height:22px}
+[data-mdi="ct-arc"] .tag.active{background:var(--pg);color:var(--tiat)}
+[data-mdi="ct-arc"] .sb-item{justify-content:center;padding:12px 0;border-left:none;border-radius:10px;margin:2px 6px}
+[data-mdi="ct-arc"] .sb-item svg{width:20px;height:20px}
 
 body{font-family:var(--ft);font-size:var(--fs);background:var(--pg);color:var(--tx);overflow:hidden;height:100vh;display:flex;line-height:1.5;transition:background 0.4s,color 0.3s}
 .sidebar{width:var(--sb-w);background:var(--sb-bg);color:var(--sb-text);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;overflow-x:hidden;transition:all 0.4s;z-index:50}
@@ -64,6 +90,9 @@ body{font-family:var(--ft);font-size:var(--fs);background:var(--pg);color:var(--
 .sw-b.active{background:rgba(100,180,255,0.2);border-color:rgba(100,180,255,0.4);color:#fff}
 .sw-b .st{color:rgba(255,255,255,0.25);font-size:0.45rem;margin-left:2px}
 @media(max-width:900px){.sidebar{display:none}.mg{grid-template-columns:repeat(2,1fr)}.g2{grid-template-columns:1fr}}
+[data-mdi="ct-maham"] .sidebar span:not(.ico),[data-mdi="ct-vscode"] .sidebar span,[data-mdi="ct-vscode"] .sb-sec,[data-mdi="ct-vscode"] .sb-logo span,[data-mdi="ct-arc"] .sidebar span:not(.ico),[data-mdi="ct-arc"] .sb-sec{display:none}
+[data-mdi="ct-vscode"] .sb-logo .ico,[data-mdi="ct-arc"] .sb-logo .ico{margin:0 auto}
+[data-mdi="ct-maham"] .sb-sec{display:none}
 </style>
 </head>
 <body>
@@ -95,7 +124,7 @@ body{font-family:var(--ft);font-size:var(--fs);background:var(--pg);color:var(--
 <div class="page" id="p-settings"><div class="page-header"><h2>Settings ⚙️</h2><p>Config</p></div><div class="card" style="max-width:400px"><label style="font-size:0.7rem;color:var(--tx2);display:block;margin-bottom:4px">Name</label><input class="fi" value="YK Admin"><label style="font-size:0.7rem;color:var(--tx2);display:block;margin-bottom:4px">Email</label><input class="fi" value="yk@ex.com"><button style="padding:8px 20px;border:none;border-radius:6px;background:var(--ac);color:#fff;font-family:inherit;font-weight:600;cursor:pointer;font-size:0.75rem">Save</button></div></div>
 </div>
 </div>
-<div class="switcher"><div class="sw-l">MDI Multi-Tab — 10 Templates</div><div class="sw-r">
+<div class="switcher"><div class="sw-l">MDI Multi-Tab — 15 Templates (10 Standard + 5 Connected)</div><div class="sw-r">
 <button class="sw-b active" data-m="vue-element">vue-element-admin<span class="st">88K★</span></button>
 <button class="sw-b" data-m="jeecg">JeecgBoot<span class="st">45K★</span></button>
 <button class="sw-b" data-m="antd-pro">Ant Design Pro<span class="st">38K★</span></button>
@@ -106,6 +135,12 @@ body{font-family:var(--ft);font-size:var(--fs);background:var(--pg);color:var(--
 <button class="sw-b" data-m="naive">Naive UI Admin<span class="st">4K★</span></button>
 <button class="sw-b" data-m="fantastic">Fantastic<span class="st">Pro</span></button>
 <button class="sw-b" data-m="mdijs">MDI.js<span class="st">JS</span></button>
+</div><div class="sw-l" style="margin-top:5px">Connected Tab (탭-콘텐츠 일체형)</div><div class="sw-r">
+<button class="sw-b" data-m="ct-chrome">Chrome-style</button>
+<button class="sw-b" data-m="ct-notion">Notion-style</button>
+<button class="sw-b" data-m="ct-maham">Maham-style</button>
+<button class="sw-b" data-m="ct-vscode">VS Code-style</button>
+<button class="sw-b" data-m="ct-arc">Arc Browser-style</button>
 </div></div>
 <script>
 var oT=['dashboard'],aT='dashboard';
