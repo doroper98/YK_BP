@@ -53,9 +53,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);overflow:hidde
 .tab.active{background:var(--bg);color:var(--tx);box-shadow:0 -1px 4px rgba(0,0,0,0.04)}
 .tab-dot{width:6px;height:6px;border-radius:50%;background:var(--tx3)}
 .tab.active .tab-dot{background:var(--red)}
-.tab-close{width:16px;height:16px;border-radius:50%;border:none;background:transparent;color:inherit;cursor:pointer;font-size:0.6rem;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.15s;margin-left:2px}
-.tab:hover .tab-close{opacity:0.5}
-.tab-close:hover{background:rgba(0,0,0,0.08);opacity:1}
+.tab-close{width:18px;height:18px;border-radius:50%;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-left:4px;transition:all 0.15s;padding:0}
+.tab-close svg{width:10px;height:10px;stroke:#bbb;stroke-width:2.5;stroke-linecap:round;fill:none}
+.tab:hover .tab-close svg{stroke:#888}
+.tab-close:hover{background:rgba(0,0,0,0.1)}
+.tab-close:hover svg{stroke:var(--red)}
 .tab-add{width:32px;height:32px;border-radius:8px;border:none;background:transparent;color:var(--tx3);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-bottom:2px}
 .tab-add:hover{background:rgba(0,0,0,0.04)}
 
@@ -252,7 +254,7 @@ function renderTabs(){
     var a=id===activeTab;
     h+='<div class="tab'+(a?' active':'')+'" onclick="switchTab(\''+id+'\')">';
     h+='<span class="tab-dot"></span>'+labels[id];
-    if(id!=='dashboard')h+='<button class="tab-close" onclick="event.stopPropagation();closeTab(\''+id+'\')">×</button>';
+    if(id!=='dashboard')h+='<button class="tab-close" onclick="event.stopPropagation();closeTab(\''+id+'\')"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></button>';
     h+='</div>';
   });
   h+='<button class="tab-add" title="메뉴에서 선택">+</button>';
