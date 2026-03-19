@@ -18,6 +18,46 @@
 --font:'Open Sans','Noto Sans KR','Helvetica Neue',Arial,sans-serif;
 --r:8px;--r-sm:4px;--sh:0 1px 3px rgba(0,0,0,0.08),0 2px 8px rgba(0,0,0,0.04);
 }
+/* ===== TONE THEMES ===== */
+[data-tone="yelp"]{--ac:#d32323;--ac-dk:#af1b1b;--ac-s:rgba(211,35,35,0.06);--ac-link:#0073bb;--xd:#bbb;--xh:#888;--xa:#d32323}
+[data-tone="blue"]{--ac:#2563eb;--ac-dk:#1d4ed8;--ac-s:rgba(37,99,235,0.06);--ac-link:#2563eb;--red:#2563eb;--red-dk:#1d4ed8;--red-s:rgba(37,99,235,0.06);--blue:#2563eb;--blue-s:rgba(37,99,235,0.06);--xd:#c0c8d0;--xh:#7a8a9a;--xa:#2563eb}
+[data-tone="mint"]{--ac:#059669;--ac-dk:#047857;--ac-s:rgba(5,150,105,0.06);--ac-link:#059669;--red:#059669;--red-dk:#047857;--red-s:rgba(5,150,105,0.06);--blue:#059669;--blue-s:rgba(5,150,105,0.06);--xd:#b8d4c8;--xh:#6aaa8a;--xa:#059669}
+[data-tone="purple"]{--ac:#7c3aed;--ac-dk:#6d28d9;--ac-s:rgba(124,58,237,0.06);--ac-link:#7c3aed;--red:#7c3aed;--red-dk:#6d28d9;--red-s:rgba(124,58,237,0.06);--blue:#7c3aed;--blue-s:rgba(124,58,237,0.06);--xd:#c4b8e0;--xh:#8a7ab0;--xa:#7c3aed}
+[data-tone="orange"]{--ac:#ea580c;--ac-dk:#c2410c;--ac-s:rgba(234,88,12,0.06);--ac-link:#ea580c;--red:#ea580c;--red-dk:#c2410c;--red-s:rgba(234,88,12,0.06);--blue:#ea580c;--blue-s:rgba(234,88,12,0.06);--xd:#d4c0a8;--xh:#a08060;--xa:#ea580c}
+[data-tone="mono"]{--ac:#404040;--ac-dk:#2a2a2a;--ac-s:rgba(64,64,64,0.06);--ac-link:#555;--red:#404040;--red-dk:#2a2a2a;--red-s:rgba(64,64,64,0.06);--blue:#555;--blue-s:rgba(64,64,64,0.06);--xd:#c0c0c0;--xh:#808080;--xa:#333}
+[data-tone] .tab-close svg{stroke:var(--xd,#bbb)}[data-tone] .tab:hover .tab-close svg{stroke:var(--xh,#888)}[data-tone] .tab-close:hover svg{stroke:var(--xa,var(--red))}
+[data-tone] .tab.active .tab-dot{background:var(--ac)}[data-tone] .sb-btn:hover,[data-tone] .sb-btn.active{background:var(--ac-s);color:var(--ac)}
+[data-tone] .topnav{background:var(--ac)}[data-tone] .topnav-search button{background:var(--ac-dk)}
+[data-tone] .card-title .dot{background:var(--ac)}[data-tone] .listing-name{color:var(--ac-link)}
+[data-tone] .dt tr:hover td{background:var(--ac-s)}[data-tone] .fi:focus{border-color:var(--ac-link);box-shadow:0 0 0 3px var(--ac-s)}
+.tone-bar{position:fixed;top:64px;right:16px;z-index:100;display:flex;gap:5px;background:#fff;padding:6px 10px;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.12);border:1px solid #eee;align-items:center}
+.tone-label{font-size:0.58rem;color:#999;margin-right:4px;font-weight:600;white-space:nowrap}
+.tone-btn{width:22px;height:22px;border-radius:50%;border:2.5px solid #e0e0e0;cursor:pointer;transition:all 0.2s}
+.tone-btn:hover{transform:scale(1.15)}.tone-btn.active{border-color:#333;box-shadow:0 0 0 2px rgba(0,0,0,0.12)}
+.tone-btn[data-tone="yelp"]{background:#d32323}.tone-btn[data-tone="blue"]{background:#2563eb}.tone-btn[data-tone="mint"]{background:#059669}
+.tone-btn[data-tone="purple"]{background:#7c3aed}.tone-btn[data-tone="orange"]{background:#ea580c}.tone-btn[data-tone="mono"]{background:linear-gradient(135deg,#666,#bbb)}
+/* ===== MODAL ===== */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:500;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex;animation:mFi 0.2s ease}
+@keyframes mFi{from{opacity:0}to{opacity:1}}
+.modal{background:var(--card,#fff);border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.2);width:90%;max-width:480px;max-height:80vh;overflow:hidden;animation:mSi 0.25s ease;display:flex;flex-direction:column}
+@keyframes mSi{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--bdr-lt,#eee)}
+.modal-header h3{font-size:0.95rem;font-weight:700}
+.modal-x{width:28px;height:28px;border-radius:50%;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s}
+.modal-x svg{width:12px;height:12px;stroke:#999;stroke-width:2.5;stroke-linecap:round;fill:none}
+.modal-x:hover{background:var(--ac-s,rgba(211,35,35,0.06))}.modal-x:hover svg{stroke:var(--ac,#d32323)}
+.modal-body{padding:20px;overflow-y:auto;font-size:0.82rem;color:var(--tx2,#666);line-height:1.7}
+.modal-footer{display:flex;justify-content:flex-end;gap:8px;padding:14px 20px;border-top:1px solid var(--bdr-lt,#eee)}
+.mbtn{font-family:inherit;font-size:0.78rem;font-weight:700;padding:8px 20px;border-radius:6px;cursor:pointer;transition:all 0.15s}
+.mbtn-cancel{background:#fff;color:#666;border:1px solid #ddd}.mbtn-cancel:hover{background:#f5f5f5}
+.mbtn-ok{background:var(--ac,#d32323);color:#fff;border:1px solid var(--ac-dk,#af1b1b)}.mbtn-ok:hover{opacity:0.9}
+.mbtn-del{background:#fff;color:var(--dan,#d32323);border:1px solid var(--dan,#d32323)}.mbtn-del:hover{background:var(--dan-s,rgba(211,35,35,0.06))}
+/* Action buttons row */
+.act-row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.act-btn{font-family:inherit;font-size:0.75rem;font-weight:600;padding:8px 16px;border-radius:6px;border:1px solid var(--bdr,#e6e6e6);background:var(--card,#fff);color:var(--tx2,#666);cursor:pointer;transition:all 0.15s;display:inline-flex;align-items:center;gap:5px}
+.act-btn:hover{border-color:var(--ac,#d32323);color:var(--ac,#d32323);background:var(--ac-s,rgba(211,35,35,0.06))}
+.act-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 body{font-family:var(--font);background:var(--bg);color:var(--tx);overflow:hidden;height:100vh;display:flex;flex-direction:column;font-size:0.875rem;line-height:1.6;-webkit-font-smoothing:antialiased}
 
 /* ===== TOP NAV (Yelp Red) ===== */
@@ -112,7 +152,60 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);overflow:hidde
 @media(max-width:768px){.sidebar{display:none}.mg{grid-template-columns:repeat(2,1fr)}.g2{grid-template-columns:1fr}.topnav-search{max-width:200px}}
 </style>
 </head>
-<body>
+<body data-tone="yelp">
+
+<!-- TONE SWITCHER -->
+<div class="tone-bar">
+<span class="tone-label">Tone</span>
+<div class="tone-btn active" data-tone="yelp" title="Yelp Red" onclick="setTone('yelp',this)"></div>
+<div class="tone-btn" data-tone="blue" title="Calm Blue" onclick="setTone('blue',this)"></div>
+<div class="tone-btn" data-tone="mint" title="Mint Green" onclick="setTone('mint',this)"></div>
+<div class="tone-btn" data-tone="purple" title="Purple" onclick="setTone('purple',this)"></div>
+<div class="tone-btn" data-tone="orange" title="Orange" onclick="setTone('orange',this)"></div>
+<div class="tone-btn" data-tone="mono" title="Monotone" onclick="setTone('mono',this)"></div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-info">
+<div class="modal">
+<div class="modal-header"><h3>Information</h3><button class="modal-x" onclick="closeModal('modal-info')"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></button></div>
+<div class="modal-body">이것은 <strong>정보 팝업</strong>입니다. 사용자에게 중요한 안내사항이나 도움말을 표시할 때 사용합니다.<br><br>팝업은 배경을 어둡게 처리(overlay)하여 현재 작업 맥락을 유지하면서도 주의를 집중시킵니다. MDI 탭 안에서 팝업이 떠도 다른 탭의 상태는 영향받지 않습니다.</div>
+<div class="modal-footer"><button class="mbtn mbtn-ok" onclick="closeModal('modal-info')">확인</button></div>
+</div>
+</div>
+
+<div class="modal-overlay" id="modal-confirm">
+<div class="modal">
+<div class="modal-header"><h3>Confirm Action</h3><button class="modal-x" onclick="closeModal('modal-confirm')"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></button></div>
+<div class="modal-body">정말 이 항목을 <strong>삭제</strong>하시겠습니까?<br><br>삭제 후에는 복원할 수 없습니다. 관련된 리뷰와 평점 데이터도 함께 삭제됩니다.</div>
+<div class="modal-footer"><button class="mbtn mbtn-cancel" onclick="closeModal('modal-confirm')">취소</button><button class="mbtn mbtn-del" onclick="closeModal('modal-confirm')">삭제</button></div>
+</div>
+</div>
+
+<div class="modal-overlay" id="modal-form">
+<div class="modal">
+<div class="modal-header"><h3>New Business</h3><button class="modal-x" onclick="closeModal('modal-form')"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></button></div>
+<div class="modal-body">
+<div style="margin-bottom:10px"><label style="display:block;font-size:0.72rem;color:#999;font-weight:600;margin-bottom:4px">Business Name</label><input class="fi" placeholder="e.g. 맛있는 식당"></div>
+<div style="margin-bottom:10px"><label style="display:block;font-size:0.72rem;color:#999;font-weight:600;margin-bottom:4px">Category</label><select class="fi"><option>Korean Food</option><option>Coffee / Bakery</option><option>Italian</option><option>Japanese</option></select></div>
+<div style="margin-bottom:10px"><label style="display:block;font-size:0.72rem;color:#999;font-weight:600;margin-bottom:4px">Address</label><input class="fi" placeholder="e.g. 서울시 강남구..."></div>
+<div><label style="display:block;font-size:0.72rem;color:#999;font-weight:600;margin-bottom:4px">Description</label><textarea class="fi" style="min-height:60px;resize:vertical" placeholder="비즈니스 소개..."></textarea></div>
+</div>
+<div class="modal-footer"><button class="mbtn mbtn-cancel" onclick="closeModal('modal-form')">취소</button><button class="mbtn mbtn-ok" onclick="closeModal('modal-form')">등록</button></div>
+</div>
+</div>
+
+<div class="modal-overlay" id="modal-toast">
+<div class="modal" style="max-width:360px">
+<div class="modal-header"><h3>Success!</h3><button class="modal-x" onclick="closeModal('modal-toast')"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></button></div>
+<div class="modal-body" style="text-align:center;padding:30px 20px">
+<div style="font-size:2.5rem;margin-bottom:12px">✅</div>
+<div style="font-weight:700;color:var(--tx);margin-bottom:6px">작업이 완료되었습니다</div>
+<div style="font-size:0.78rem">변경사항이 성공적으로 저장되었습니다.</div>
+</div>
+<div class="modal-footer"><button class="mbtn mbtn-ok" onclick="closeModal('modal-toast')">확인</button></div>
+</div>
+</div>
 
 <!-- TOP NAV -->
 <nav class="topnav">
@@ -162,6 +255,16 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);overflow:hidde
 <div class="g2">
 <div class="card"><div class="card-title"><span class="dot"></span>Monthly Revenue</div><div class="cw"><canvas id="ch1"></canvas></div></div>
 <div class="card"><div class="card-title"><span class="dot"></span>Rating Distribution</div><div class="cw"><canvas id="ch2"></canvas></div></div>
+</div>
+
+<div class="card">
+<div class="card-title"><span class="dot"></span>Popup Demo — 버튼을 눌러 팝업 테스트</div>
+<div class="act-row">
+<button class="act-btn" onclick="openModal('modal-info')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>정보 팝업</button>
+<button class="act-btn" onclick="openModal('modal-confirm')"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>삭제 확인</button>
+<button class="act-btn" onclick="openModal('modal-form')"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>신규 등록</button>
+<button class="act-btn" onclick="openModal('modal-toast')"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>성공 알림</button>
+</div>
 </div>
 </div>
 
@@ -298,6 +401,25 @@ function buildAna(){
   var d=[];for(var i=0;i<30;i++)d.push(Math.floor(Math.random()*8000)+2000);
   new Chart(document.getElementById('ch-ana'),{type:'bar',data:{labels:Array.from({length:30},function(_,i){return(i+1)+''}),datasets:[{data:d,backgroundColor:'rgba(211,35,35,0.5)',borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#999',font:{size:9},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{display:false},border:{display:false}},y:{ticks:{color:'#999',font:{size:10}},grid:{color:'rgba(0,0,0,0.04)'},border:{display:false}}}}});
 }
+
+function setTone(t,el){
+  document.body.setAttribute('data-tone',t);
+  document.querySelectorAll('.tone-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-tone')===t)});
+}
+
+function openModal(id){
+  var el=document.getElementById(id);
+  if(el)el.classList.add('show');
+}
+function closeModal(id){
+  var el=document.getElementById(id);
+  if(el)el.classList.remove('show');
+}
+document.querySelectorAll('.modal-overlay').forEach(function(o){
+  o.addEventListener('click',function(e){
+    if(e.target===this)this.classList.remove('show');
+  });
+});
 
 renderTabs();
 buildDash();
