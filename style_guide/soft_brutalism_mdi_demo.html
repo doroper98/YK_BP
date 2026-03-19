@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ko" data-tone="earth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YK Admin — Soft Brutalism MDI</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--pri:#7eb77f;--pri-dk:#5a9a5b;--pri-s:rgba(126,183,127,0.12);
+--sec:#c9a96e;--sec-s:rgba(201,169,110,0.12);
+--bg:#f5f0e8;--card:#fff;--bdr:#c8c0b0;--bdr-lt:#d9d2c5;
+--tx:#3d3929;--tx2:#7a7262;--tx3:#b5ad9e;
+--suc:#6baa7c;--suc-s:rgba(107,170,124,0.12);--dan:#d4776b;--dan-s:rgba(212,119,107,0.1);--war:#8fb4c9;--war-s:rgba(143,180,201,0.12);
+--font:'Rubik','Noto Sans KR',sans-serif;
+--r:6px;--r-sm:4px;
+--sh:3px 3px 0 #c8c0b0;--sh-lg:4px 4px 0 #c8c0b0;--sh-sm:2px 2px 0 #c8c0b0;
+}
+/* ===== TONE THEMES ===== */
+[data-tone="earth"]{--ac:#7eb77f;--ac-dk:#5a9a5b;--ac-s:rgba(126,183,127,0.12);--ac-link:#7eb77f;--xd:#c8c0b0;--xh:#9a9282;--xa:#d4776b}
+[data-tone="blue"]{--ac:#5b8db8;--ac-dk:#47729a;--ac-s:rgba(91,141,184,0.1);--ac-link:#5b8db8;--pri:#5b8db8;--pri-dk:#47729a;--pri-s:rgba(91,141,184,0.1);--xd:#b0c0d0;--xh:#7a90a8;--xa:#5b8db8}
+[data-tone="mint"]{--ac:#5aab8b;--ac-dk:#469575;--ac-s:rgba(90,171,139,0.1);--ac-link:#5aab8b;--pri:#5aab8b;--pri-dk:#469575;--pri-s:rgba(90,171,139,0.1);--xd:#b0d4c0;--xh:#6eaa8a;--xa:#5aab8b}
+[data-tone="purple"]{--ac:#9b7ec8;--ac-dk:#7d60aa;--ac-s:rgba(155,126,200,0.1);--ac-link:#9b7ec8;--pri:#9b7ec8;--pri-dk:#7d60aa;--pri-s:rgba(155,126,200,0.1);--xd:#c4b8d8;--xh:#9580b0;--xa:#9b7ec8}
+[data-tone="orange"]{--ac:#c9856e;--ac-dk:#b06a52;--ac-s:rgba(201,133,110,0.1);--ac-link:#c9856e;--pri:#c9856e;--pri-dk:#b06a52;--pri-s:rgba(201,133,110,0.1);--xd:#d4c0a8;--xh:#b09070;--xa:#c9856e}
+[data-tone="mono"]{--ac:#6b6558;--ac-dk:#524e42;--ac-s:rgba(107,101,88,0.08);--ac-link:#6b6558;--pri:#6b6558;--pri-dk:#524e42;--pri-s:rgba(107,101,88,0.08);--xd:#c0b8a8;--xh:#908878;--xa:#524e42}
+[data-tone] .tab.active .tab-dot{background:var(--ac)}[data-tone] .sb-btn:hover,[data-tone] .sb-btn.active{background:var(--ac-s);color:var(--ac)}
+[data-tone] .topnav{background:var(--ac);border-bottom-color:var(--ac-dk)}[data-tone] .topnav-search button{background:var(--ac-dk)}
+[data-tone] .card-title .dot{background:var(--ac)}[data-tone] .listing-name{color:var(--ac-link)}
+[data-tone] .dt tr:hover td{background:var(--ac-s)}[data-tone] .fi:focus{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac-s)}
+/* ===== MODAL (Brutalist) ===== */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(61,57,41,0.45);z-index:500;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex;animation:mFi 0.2s ease}
+@keyframes mFi{from{opacity:0}to{opacity:1}}
+.modal{background:var(--card);border-radius:var(--r);border:2px solid var(--bdr);box-shadow:6px 6px 0 #c8c0b0;width:90%;max-width:480px;max-height:80vh;overflow:hidden;animation:mSi 0.25s ease;display:flex;flex-direction:column}
+@keyframes mSi{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:2px solid var(--bdr)}
+.modal-header h3{font-size:0.95rem;font-weight:700}
+.modal-x{width:28px;height:28px;border-radius:var(--r-sm);border:1px solid var(--bdr-lt);background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;box-shadow:var(--sh-sm)}
+.modal-x:hover{background:var(--dan-s);border-color:var(--dan)}.modal-x:active{transform:translate(1px,1px);box-shadow:none}
+.modal-x svg{width:12px;height:12px;stroke:var(--tx3);stroke-width:2.5;stroke-linecap:round;fill:none}
+.modal-x:hover svg{stroke:var(--dan)}
+.modal-body{padding:20px;overflow-y:auto;font-size:0.82rem;color:var(--tx2);line-height:1.7}
+.modal-footer{display:flex;justify-content:flex-end;gap:8px;padding:14px 20px;border-top:2px solid var(--bdr)}
+.mbtn{font-family:var(--font);font-size:0.78rem;font-weight:700;padding:8px 20px;border-radius:var(--r-sm);cursor:pointer;transition:all 0.15s;box-shadow:var(--sh-sm)}
+.mbtn:active{transform:translate(1px,1px);box-shadow:none}
+.mbtn-cancel{background:var(--card);color:var(--tx2);border:1px solid var(--bdr-lt)}.mbtn-cancel:hover{background:var(--bg)}
+.mbtn-ok{background:var(--ac,var(--pri));color:#fff;border:1px solid var(--ac-dk,var(--pri-dk))}.mbtn-ok:hover{opacity:0.9}
+.mbtn-del{background:var(--card);color:var(--dan);border:1px solid var(--dan)}.mbtn-del:hover{background:var(--dan-s)}
+/* Action buttons */
+.act-row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.act-btn{font-family:var(--font);font-size:0.75rem;font-weight:600;padding:8px 16px;border-radius:var(--r-sm);border:1px solid var(--bdr-lt);background:var(--card);color:var(--tx2);cursor:pointer;transition:all 0.15s;display:inline-flex;align-items:center;gap:5px;box-shadow:var(--sh-sm)}
+.act-btn:hover{border-color:var(--ac,var(--pri));color:var(--ac,var(--pri));background:var(--ac-s,var(--pri-s))}
+.act-btn:active{transform:translate(1px,1px);box-shadow:none}
+.act-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+body{font-family:var(--font);background:var(--bg);color:var(--tx);overflow:hidden;height:100vh;display:flex;flex-direction:column;font-size:0.875rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+/* ===== TOP NAV (Soft Brutalist) ===== */
+.topnav{height:56px;background:var(--pri);display:flex;align-items:center;padding:0 20px;gap:16px;flex-shrink:0;z-index:50;border-bottom:2px solid var(--pri-dk)}
+.topnav-logo{font-weight:800;font-size:1.3rem;color:#fff;letter-spacing:-0.02em;cursor:pointer}
+.topnav-logo span{font-weight:400;font-size:0.65rem;opacity:0.75;margin-left:6px;background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:var(--r-sm);letter-spacing:0.04em;text-transform:uppercase}
+.topnav-search{flex:1;max-width:420px;display:flex;border-radius:var(--r-sm);overflow:hidden;border:2px solid rgba(255,255,255,0.25)}
+.topnav-search input{flex:1;padding:7px 14px;border:none;font-family:var(--font);font-size:0.82rem;outline:none;background:#fff}
+.topnav-search button{padding:7px 16px;background:var(--pri-dk);color:#fff;border:none;font-family:var(--font);font-weight:700;cursor:pointer;font-size:0.82rem}
+.topnav-search button:hover{background:#4a8a4b}
+.topnav-spacer{flex:1}
+.topnav-link{color:rgba(255,255,255,0.85);font-size:0.78rem;font-weight:600;padding:6px 12px;border-radius:var(--r-sm);cursor:pointer;transition:all 0.2s}
+.topnav-link:hover{background:rgba(255,255,255,0.2);color:#fff}
+.topnav-avatar{width:32px;height:32px;border-radius:var(--r-sm);background:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:#fff;cursor:pointer}
+
+/* ===== MAIN LAYOUT ===== */
+.main-layout{flex:1;display:flex;overflow:hidden}
+
+/* ===== SIDEBAR (Brutalist) ===== */
+.sidebar{width:68px;background:var(--card);border-right:2px solid var(--bdr);display:flex;flex-direction:column;align-items:center;padding:10px 0;flex-shrink:0;overflow-y:auto}
+.sb-btn{width:50px;height:50px;border-radius:var(--r-sm);border:none;background:transparent;color:var(--tx3);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-family:var(--font);font-size:0.48rem;font-weight:600;transition:all 0.2s;margin-bottom:2px}
+.sb-btn:hover{background:var(--pri-s);color:var(--pri)}
+.sb-btn.active{background:var(--pri-s);color:var(--pri)}
+.sb-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sb-sep{width:32px;height:2px;background:var(--bdr);margin:8px 0}
+.sb-spacer{flex:1}
+
+/* ===== TAB BAR (Flat brutalist — connected via open bottom) ===== */
+.tab-bar{height:44px;background:var(--bdr-lt);display:flex;align-items:flex-end;padding:0 12px;gap:2px;overflow-x:auto;flex-shrink:0;scrollbar-width:none;position:relative}
+.tab-bar::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--bdr);z-index:1}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{display:flex;align-items:center;gap:5px;padding:8px 16px;background:transparent;color:var(--tx3);font-size:0.75rem;font-weight:600;cursor:pointer;border:none;transition:all 0.15s;white-space:nowrap;flex-shrink:0;font-family:var(--font);position:relative;margin:0;border-radius:0}
+.tab:hover{color:var(--tx2);background:rgba(0,0,0,0.04)}
+.tab.active{background:var(--bg);color:var(--tx);border:2px solid var(--bdr);border-bottom:none;border-radius:var(--r) var(--r) 0 0;margin-bottom:-2px;z-index:2}
+.tab-dot{width:6px;height:6px;border-radius:50%;background:var(--tx3);border:1px solid var(--bdr)}
+.tab.active .tab-dot{background:var(--ac,var(--pri));border-color:var(--ac-dk,var(--pri-dk))}
+.tab-close{width:18px;height:18px;border-radius:var(--r-sm);border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-left:4px;transition:all 0.15s;padding:0}
+.tab-close svg{width:10px;height:10px;stroke:var(--xd,#c8c0b0);stroke-width:2.5;stroke-linecap:round;fill:none}
+.tab:hover .tab-close svg{stroke:var(--xh,#9a9282)}
+.tab-close:hover{background:rgba(212,119,107,0.12)}
+.tab-close:hover svg{stroke:var(--xa,#d4776b)}
+.tab-add{width:32px;height:32px;border-radius:var(--r-sm);border:1px dashed var(--bdr);background:transparent;color:var(--tx3);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-bottom:4px;transition:all 0.15s}
+.tab-add:hover{background:var(--card);border-style:solid;color:var(--tx2)}
+/* Tone switcher */
+.tone-btn{width:20px;height:20px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all 0.2s;flex-shrink:0}
+.tone-btn:hover{transform:scale(1.15);border-color:var(--bdr)}
+.tone-btn.active{border-color:var(--tx);box-shadow:0 0 0 2px rgba(61,57,41,0.15)}
+
+/* ===== CONTENT ===== */
+.content-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.content{flex:1;overflow-y:auto;padding:24px;background:var(--bg)}
+.page{display:none}.page.active{display:block}
+
+/* ===== COMPONENTS (Brutalist) ===== */
+.page-header{margin-bottom:20px}
+.page-header h2{font-size:1.25rem;font-weight:800;margin-bottom:2px;letter-spacing:-0.01em}
+.page-header p{color:var(--tx2);font-size:0.78rem}
+
+.card{background:var(--card);border:2px solid var(--bdr);border-radius:var(--r);box-shadow:var(--sh);padding:1.25rem;transition:all 0.2s;margin-bottom:16px}
+.card:hover{transform:translate(-1px,-1px);box-shadow:var(--sh-lg)}
+.card-title{font-size:0.85rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.card-title .dot{width:8px;height:8px;border-radius:2px;background:var(--pri);border:1px solid var(--pri-dk)}
+
+.mg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.ml{font-size:0.68rem;color:var(--tx3);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;margin-bottom:4px}
+.mv{font-size:1.5rem;font-weight:800;letter-spacing:-0.02em}
+.mc{font-size:0.68rem;margin-top:4px;font-weight:500}.mc.up{color:var(--suc)}.mc.dn{color:var(--dan)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.cw{position:relative;height:200px}.cw canvas{width:100%!important;height:100%!important}
+
+/* Rating — earth tones */
+.stars{display:inline-flex;gap:3px;margin:4px 0}
+.star{width:20px;height:20px;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;background:#e8e2d8;font-size:0.65rem;color:#fff;border:1px solid var(--bdr);font-weight:700}
+.star.s5{background:#6baa7c;border-color:#5a9a5b}.star.s4{background:#7eb77f;border-color:#5a9a5b}.star.s3{background:#c9a96e;border-color:#b09058}.star.s2{background:#c9856e;border-color:#b06a52}.star.s1{background:#d4776b;border-color:#b05e52}
+
+/* Listing */
+.listing{display:flex;gap:14px;padding:14px;border-bottom:2px solid var(--bdr);transition:all 0.2s;cursor:pointer}
+.listing:hover{background:var(--pri-s);transform:translate(-1px,-1px)}
+.listing:last-child{border-bottom:none}
+.listing-thumb{width:80px;height:80px;border-radius:var(--r-sm);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;border:2px solid var(--bdr);box-shadow:var(--sh-sm)}
+.listing-info{flex:1}
+.listing-name{font-weight:700;font-size:0.88rem;color:var(--pri)}
+.listing-cat{font-size:0.7rem;color:var(--tx3);margin-top:2px}
+.listing-review{font-size:0.75rem;color:var(--tx2);margin-top:6px;line-height:1.4}
+
+/* Table — brutalist */
+.dt{width:100%;font-size:0.78rem;border-collapse:collapse}
+.dt th{text-align:left;padding:8px 12px;color:var(--tx3);font-weight:700;font-size:0.68rem;text-transform:uppercase;border-bottom:2px solid var(--bdr);letter-spacing:0.04em}
+.dt td{padding:8px 12px;border-bottom:1px solid var(--bdr-lt)}
+.dt tr:hover td{background:var(--pri-s)}
+.bdg{display:inline-block;font-size:0.62rem;font-weight:700;padding:3px 10px;border-radius:var(--r-sm);border:1px solid}
+.bdg-s{background:var(--suc-s);color:var(--suc);border-color:var(--suc)}.bdg-d{background:var(--dan-s);color:var(--dan);border-color:var(--dan)}.bdg-w{background:var(--war-s);color:var(--war);border-color:var(--war)}
+
+.fi{width:100%;padding:10px 14px;border:2px solid var(--bdr);border-radius:var(--r-sm);background:var(--card);color:var(--tx);font-family:var(--font);font-size:0.82rem;outline:none;margin-bottom:12px;transition:all 0.2s}
+.fi:focus{border-color:var(--pri);box-shadow:0 0 0 2px var(--pri-s)}
+
+@media(max-width:768px){.sidebar{display:none}.mg{grid-template-columns:repeat(2,1fr)}.g2{grid-template-columns:1fr}.topnav-search{max-width:200px}}
+</style>
+</head>
+<body>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-info">
+<div class="modal">
+<div class="modal-header"><h3>Information</h3><button class="modal-x" onclick="closeModal('modal-info')"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></button></div>
+<div class="modal-body">이것은 <strong>정보 팝업</strong>입니다. Soft Brutalism 스타일의 모달은 두꺼운 테두리와 오프셋 그림자를 특징으로 합니다.<br><br>팝업은 배경을 어둡게 처리(overlay)하여 작업 맥락을 유지하면서 주의를 집중시킵니다. MDI 탭 안에서 팝업이 떠도 다른 탭의 상태는 영향받지 않습니다.</div>
+<div class="modal-footer"><button class="mbtn mbtn-ok" onclick="closeModal('modal-info')">확인</button></div>
+</div>
+</div>
+
+<div class="modal-overlay" id="modal-confirm">
+<div class="modal">
+<div class="modal-header"><h3>Confirm Action</h3><button class="modal-x" onclick="closeModal('modal-confirm')"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></button></div>
+<div class="modal-body">정말 이 항목을 <strong>삭제</strong>하시겠습니까?<br><br>삭제 후에는 복원할 수 없습니다. 관련된 데이터도 함께 삭제됩니다.<br><br>버튼을 누르면 <strong>press 효과</strong>(1px 이동 + 그림자 제거)가 적용됩니다.</div>
+<div class="modal-footer"><button class="mbtn mbtn-cancel" onclick="closeModal('modal-confirm')">취소</button><button class="mbtn mbtn-del" onclick="closeModal('modal-confirm')">삭제</button></div>
+</div>
+</div>
+
+<div class="modal-overlay" id="modal-form">
+<div class="modal">
+<div class="modal-header"><h3>New Item</h3><button class="modal-x" onclick="closeModal('modal-form')"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></button></div>
+<div class="modal-body">
+<div style="margin-bottom:10px"><label style="display:block;font-size:0.72rem;color:var(--tx3);font-weight:600;margin-bottom:4px">Item Name</label><input class="fi" placeholder="e.g. 프로젝트 이름"></div>
+<div style="margin-bottom:10px"><label style="display:block;font-size:0.72rem;color:var(--tx3);font-weight:600;margin-bottom:4px">Category</label><select class="fi"><option>Development</option><option>Design</option><option>Marketing</option><option>Research</option></select></div>
+<div style="margin-bottom:10px"><label style="display:block;font-size:0.72rem;color:var(--tx3);font-weight:600;margin-bottom:4px">Priority</label><select class="fi"><option>High</option><option>Medium</option><option>Low</option></select></div>
+<div><label style="display:block;font-size:0.72rem;color:var(--tx3);font-weight:600;margin-bottom:4px">Description</label><textarea class="fi" style="min-height:60px;resize:vertical" placeholder="설명을 입력하세요..."></textarea></div>
+</div>
+<div class="modal-footer"><button class="mbtn mbtn-cancel" onclick="closeModal('modal-form')">취소</button><button class="mbtn mbtn-ok" onclick="closeModal('modal-form')">등록</button></div>
+</div>
+</div>
+
+<div class="modal-overlay" id="modal-toast">
+<div class="modal" style="max-width:360px">
+<div class="modal-header"><h3>Success!</h3><button class="modal-x" onclick="closeModal('modal-toast')"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></button></div>
+<div class="modal-body" style="text-align:center;padding:30px 20px">
+<div style="font-size:2.5rem;margin-bottom:12px">✅</div>
+<div style="font-weight:700;color:var(--tx);margin-bottom:6px">작업이 완료되었습니다</div>
+<div style="font-size:0.78rem">변경사항이 성공적으로 저장되었습니다.</div>
+</div>
+<div class="modal-footer"><button class="mbtn mbtn-ok" onclick="closeModal('modal-toast')">확인</button></div>
+</div>
+</div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+<div class="topnav-logo">YK_ <span>Soft Brutal</span></div>
+<div class="topnav-search">
+<input placeholder="Search projects, tasks...">
+<button>Search</button>
+</div>
+<div class="topnav-spacer"></div>
+<div class="topnav-link">Docs</div>
+<div class="topnav-link">Feedback</div>
+<div class="topnav-avatar">YK</div>
+</nav>
+
+<!-- MAIN -->
+<div class="main-layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+<button class="sb-btn active" data-p="dashboard" data-l="Dashboard" title="Dashboard"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+<button class="sb-btn" data-p="analytics" data-l="Analytics" title="Analytics"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>분석</button>
+<button class="sb-btn" data-p="listings" data-l="Listings" title="Listings"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>목록</button>
+<div class="sb-sep"></div>
+<button class="sb-btn" data-p="reviews" data-l="Reviews" title="Reviews"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>리뷰</button>
+<button class="sb-btn" data-p="users" data-l="Users" title="Users"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>사용자</button>
+<button class="sb-btn" data-p="orders" data-l="Orders" title="Orders"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>주문</button>
+<button class="sb-btn" data-p="messages" data-l="Messages" title="Messages"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>메시지</button>
+<div class="sb-sep"></div>
+<button class="sb-btn" data-p="settings" data-l="Settings" title="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09"/></svg>설정</button>
+<div class="sb-spacer"></div>
+<div style="display:flex;flex-direction:column;gap:4px;padding:8px 0;align-items:center" title="Color Tone">
+<div class="tone-btn active" data-t="earth" style="background:#7eb77f" title="Earth Green"></div>
+<div class="tone-btn" data-t="blue" style="background:#5b8db8" title="Calm Blue"></div>
+<div class="tone-btn" data-t="mint" style="background:#5aab8b" title="Mint"></div>
+<div class="tone-btn" data-t="purple" style="background:#9b7ec8" title="Purple"></div>
+<div class="tone-btn" data-t="orange" style="background:#c9856e" title="Terracotta"></div>
+<div class="tone-btn" data-t="mono" style="background:#6b6558" title="Mono"></div>
+</div>
+</nav>
+
+<!-- CONTENT WRAP -->
+<div class="content-wrap">
+<div class="tab-bar" id="tabBar"></div>
+<div class="content" id="contentArea">
+
+<!-- Dashboard -->
+<div class="page active" id="pg-dashboard">
+<div class="page-header"><h2>Dashboard</h2><p>프로젝트 현황 한눈에 보기</p></div>
+<div class="mg">
+<div class="card"><div class="ml">Total Projects</div><div class="mv" style="color:var(--pri)">142</div><div class="mc up">+8 this week</div></div>
+<div class="card"><div class="ml">Active Tasks</div><div class="mv">3,480</div><div class="mc up">+12.3%</div></div>
+<div class="card"><div class="ml">Completion Rate</div><div class="mv" style="color:var(--sec)">87.4%</div><div class="mc up">+3.1%</div></div>
+<div class="card"><div class="ml">Team Score</div><div class="mv">4.6</div><div class="stars"><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s3">★</span></div></div>
+</div>
+<div class="g2">
+<div class="card"><div class="card-title"><span class="dot"></span>Monthly Progress</div><div class="cw"><canvas id="ch1"></canvas></div></div>
+<div class="card"><div class="card-title"><span class="dot"></span>Task Distribution</div><div class="cw"><canvas id="ch2"></canvas></div></div>
+</div>
+
+<div class="card">
+<div class="card-title"><span class="dot"></span>Popup Demo — 버튼을 눌러 팝업 테스트</div>
+<div class="act-row">
+<button class="act-btn" onclick="openModal('modal-info')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>정보 팝업</button>
+<button class="act-btn" onclick="openModal('modal-confirm')"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>삭제 확인</button>
+<button class="act-btn" onclick="openModal('modal-form')"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>신규 등록</button>
+<button class="act-btn" onclick="openModal('modal-toast')"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>성공 알림</button>
+</div>
+</div>
+</div>
+
+<!-- Analytics -->
+<div class="page" id="pg-analytics">
+<div class="page-header"><h2>Analytics</h2><p>상세 데이터 분석</p></div>
+<div class="mg">
+<div class="card"><div class="ml">Page Views</div><div class="mv">28.4K</div><div class="mc up">+18.2%</div></div>
+<div class="card"><div class="ml">Avg. Session</div><div class="mv">6m 42s</div><div class="mc up">+2.1%</div></div>
+<div class="card"><div class="ml">Bounce Rate</div><div class="mv" style="color:var(--dan)">34.8%</div><div class="mc dn">+1.2%</div></div>
+<div class="card"><div class="ml">Conversions</div><div class="mv" style="color:var(--suc)">842</div><div class="mc up">+24.5%</div></div>
+</div>
+<div class="card"><div class="card-title"><span class="dot"></span>Daily Visitors (30 days)</div><div class="cw" style="height:240px"><canvas id="ch-ana"></canvas></div></div>
+</div>
+
+<!-- Listings -->
+<div class="page" id="pg-listings">
+<div class="page-header"><h2>Listings</h2><p>프로젝트 목록</p></div>
+<div class="card" style="padding:0;overflow:hidden">
+<div class="listing">
+<div class="listing-thumb">📦</div>
+<div class="listing-info">
+<div class="listing-name">c-DN 시뮬레이션 플랫폼</div>
+<div class="listing-cat">R&D · 시뮬레이션 툴킷</div>
+<div class="stars"><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s4">★</span></div>
+<div class="listing-review">6월 파일럿 런칭 목표, 14일→4일 시뮬레이션 TAT 단축</div>
+</div>
+</div>
+<div class="listing">
+<div class="listing-thumb">🧮</div>
+<div class="listing-info">
+<div class="listing-name">Battery Cell Calculator</div>
+<div class="listing-cat">Engineering · FastAPI/Flask</div>
+<div class="stars"><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s4">★</span><span class="star s3">★</span></div>
+<div class="listing-review">Design Master Excel 기반 27개 출력변수 계산</div>
+</div>
+</div>
+<div class="listing">
+<div class="listing-thumb">🥫</div>
+<div class="listing-info">
+<div class="listing-name">Can Crush Simulator</div>
+<div class="listing-cat">Research · FEM/Three.js</div>
+<div class="stars"><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span></div>
+<div class="listing-review">Elasto-plastic deformation, 189+ autonomous experiments</div>
+</div>
+</div>
+<div class="listing">
+<div class="listing-thumb">🎙️</div>
+<div class="listing-info">
+<div class="listing-name">Meeting Transcription Pipeline</div>
+<div class="listing-cat">Productivity · WASAPI + AssemblyAI</div>
+<div class="stars"><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s3">★</span><span class="star s2">★</span></div>
+<div class="listing-review">Windows desktop, speaker diarization, Claude 요약</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Reviews -->
+<div class="page" id="pg-reviews">
+<div class="page-header"><h2>Reviews</h2><p>팀 리뷰 현황</p></div>
+<div class="card" style="padding:0;overflow-x:auto">
+<table class="dt">
+<thead><tr><th>Reviewer</th><th>Project</th><th>Rating</th><th>Status</th><th>Date</th></tr></thead>
+<tbody>
+<tr><td style="font-weight:600">김대리</td><td>c-DN Platform</td><td><span class="stars" style="margin:0"><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s4">★</span></span></td><td><span class="bdg bdg-s">Approved</span></td><td>2026-03-18</td></tr>
+<tr><td style="font-weight:600">박과장</td><td>Cell Calculator</td><td><span class="stars" style="margin:0"><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s3">★</span></span></td><td><span class="bdg bdg-w">In Review</span></td><td>2026-03-17</td></tr>
+<tr><td style="font-weight:600">이팀장</td><td>Can Crush Sim</td><td><span class="stars" style="margin:0"><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span></span></td><td><span class="bdg bdg-s">Approved</span></td><td>2026-03-15</td></tr>
+<tr><td style="font-weight:600">정대리</td><td>Meeting Pipeline</td><td><span class="stars" style="margin:0"><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s3">★</span><span class="star s2">★</span></span></td><td><span class="bdg bdg-d">Rejected</span></td><td>2026-03-14</td></tr>
+<tr><td style="font-weight:600">최부장</td><td>Design System</td><td><span class="stars" style="margin:0"><span class="star s5">★</span><span class="star s5">★</span><span class="star s5">★</span><span class="star s4">★</span><span class="star s3">★</span></span></td><td><span class="bdg bdg-s">Approved</span></td><td>2026-03-12</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- Users -->
+<div class="page" id="pg-users">
+<div class="page-header"><h2>Users</h2><p>팀원 관리</p></div>
+<div class="card" style="padding:0;overflow-x:auto">
+<table class="dt">
+<thead><tr><th>Name</th><th>Role</th><th>Status</th><th>Tasks</th></tr></thead>
+<tbody>
+<tr><td style="font-weight:600">엄상식</td><td>Backend Dev</td><td><span class="bdg bdg-s">Active</span></td><td>24</td></tr>
+<tr><td style="font-weight:600">박종일</td><td>Frontend Dev</td><td><span class="bdg bdg-s">Active</span></td><td>18</td></tr>
+<tr><td style="font-weight:600">김민수</td><td>Data Engineer</td><td><span class="bdg bdg-w">Away</span></td><td>12</td></tr>
+<tr><td style="font-weight:600">이지은</td><td>Designer</td><td><span class="bdg bdg-s">Active</span></td><td>15</td></tr>
+<tr><td style="font-weight:600">정서연</td><td>PM</td><td><span class="bdg bdg-s">Active</span></td><td>31</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- Orders -->
+<div class="page" id="pg-orders">
+<div class="page-header"><h2>Orders</h2><p>작업 요청 현황</p></div>
+<div class="card" style="padding:0;overflow-x:auto">
+<table class="dt">
+<thead><tr><th>Order #</th><th>Task</th><th>Priority</th><th>Status</th><th>Due Date</th></tr></thead>
+<tbody>
+<tr><td style="font-weight:600">#WO-2841</td><td>Solver 통합 테스트</td><td><span class="bdg bdg-d">High</span></td><td><span class="bdg bdg-w">In Progress</span></td><td>2026-04-01</td></tr>
+<tr><td style="font-weight:600">#WO-2840</td><td>UI 컴포넌트 리팩토링</td><td><span class="bdg bdg-w">Medium</span></td><td><span class="bdg bdg-s">Done</span></td><td>2026-03-20</td></tr>
+<tr><td style="font-weight:600">#WO-2839</td><td>API 문서화</td><td><span class="bdg bdg-w">Medium</span></td><td><span class="bdg bdg-w">In Progress</span></td><td>2026-03-25</td></tr>
+<tr><td style="font-weight:600">#WO-2838</td><td>열해석 모듈 연구</td><td><span class="bdg bdg-s">Low</span></td><td><span class="bdg bdg-w">Planned</span></td><td>2026-06-30</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- Messages -->
+<div class="page" id="pg-messages">
+<div class="page-header"><h2>Messages</h2><p>알림 및 메시지</p></div>
+<div class="card" style="padding:0;overflow:hidden">
+<div class="listing"><div class="listing-thumb" style="width:44px;height:44px;font-size:1rem;border-radius:var(--r-sm)">👤</div><div class="listing-info"><div class="listing-name" style="font-size:0.82rem">엄상식</div><div class="listing-cat" style="margin-top:0">c-DN API 연동 완료했습니다</div></div><div style="font-size:0.68rem;color:var(--tx3);flex-shrink:0">30분 전</div></div>
+<div class="listing"><div class="listing-thumb" style="width:44px;height:44px;font-size:1rem;border-radius:var(--r-sm)">👤</div><div class="listing-info"><div class="listing-name" style="font-size:0.82rem">박종일</div><div class="listing-cat" style="margin-top:0">서버 점검 완료 알림</div></div><div style="font-size:0.68rem;color:var(--tx3);flex-shrink:0">1시간 전</div></div>
+<div class="listing"><div class="listing-thumb" style="width:44px;height:44px;font-size:1rem;border-radius:var(--r-sm)">🤖</div><div class="listing-info"><div class="listing-name" style="font-size:0.82rem">System</div><div class="listing-cat" style="margin-top:0">Weekly analytics report is ready</div></div><div style="font-size:0.68rem;color:var(--tx3);flex-shrink:0">3시간 전</div></div>
+</div>
+</div>
+
+<!-- Settings -->
+<div class="page" id="pg-settings">
+<div class="page-header"><h2>Settings</h2><p>계정 설정</p></div>
+<div class="card" style="max-width:450px">
+<div style="margin-bottom:12px"><label style="display:block;font-size:0.72rem;color:var(--tx3);font-weight:600;margin-bottom:4px">Project Name</label><input class="fi" value="YK Admin"></div>
+<div style="margin-bottom:12px"><label style="display:block;font-size:0.72rem;color:var(--tx3);font-weight:600;margin-bottom:4px">Email</label><input class="fi" value="yk@example.com"></div>
+<div style="margin-bottom:12px"><label style="display:block;font-size:0.72rem;color:var(--tx3);font-weight:600;margin-bottom:4px">Theme</label><select class="fi"><option>Soft Brutalism</option><option>Yelp Cookbook</option><option>Neumorphism</option></select></div>
+<button style="padding:10px 24px;border:2px solid var(--pri-dk);border-radius:var(--r-sm);background:var(--pri);color:#fff;font-family:var(--font);font-weight:700;cursor:pointer;font-size:0.82rem;box-shadow:var(--sh-sm);transition:all 0.15s" onmousedown="this.style.transform='translate(1px,1px)';this.style.boxShadow='none'" onmouseup="this.style.transform='';this.style.boxShadow='var(--sh-sm)'" onmouseleave="this.style.transform='';this.style.boxShadow='var(--sh-sm)'">Save Changes</button>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+var openTabs=['dashboard'],activeTab='dashboard';
+var labels={dashboard:'Dashboard',analytics:'Analytics',listings:'Listings',reviews:'Reviews',users:'Users',orders:'Orders',messages:'Messages',settings:'Settings'};
+
+function renderTabs(){
+  var h='';
+  openTabs.forEach(function(id){
+    var a=id===activeTab;
+    h+='<div class="tab'+(a?' active':'')+'" onclick="switchTab(\''+id+'\')">';
+    h+='<span class="tab-dot"></span>'+labels[id];
+    if(id!=='dashboard')h+='<button class="tab-close" onclick="event.stopPropagation();closeTab(\''+id+'\')"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></button>';
+    h+='</div>';
+  });
+  h+='<button class="tab-add" title="메뉴에서 선택">+</button>';
+  document.getElementById('tabBar').innerHTML=h;
+}
+
+function switchTab(id){
+  activeTab=id;
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+  var pg=document.getElementById('pg-'+id);if(pg)pg.classList.add('active');
+  document.querySelectorAll('.sb-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-p')===id)});
+  renderTabs();
+  if(id==='dashboard'&&!window._d)buildDash();
+  if(id==='analytics'&&!window._a)buildAna();
+}
+
+function openTab(id){
+  if(openTabs.indexOf(id)<0)openTabs.push(id);
+  switchTab(id);
+}
+
+function closeTab(id){
+  var i=openTabs.indexOf(id);if(i<0)return;
+  openTabs.splice(i,1);
+  if(activeTab===id)switchTab(openTabs[Math.min(i,openTabs.length-1)]||'dashboard');
+  else renderTabs();
+}
+
+document.querySelectorAll('.sb-btn').forEach(function(b){
+  b.addEventListener('click',function(){openTab(this.getAttribute('data-p'))});
+});
+
+function buildDash(){
+  window._d=true;
+  new Chart(document.getElementById('ch1'),{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],datasets:[{data:[42,48,45,58,62,55,68,72,65,78,82,84],borderColor:'#7eb77f',backgroundColor:'rgba(126,183,127,0.12)',fill:true,tension:0.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#7eb77f'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#b5ad9e',font:{size:10,family:'Rubik'}},grid:{display:false},border:{display:false}},y:{ticks:{color:'#b5ad9e',font:{size:10,family:'Rubik'}},grid:{color:'rgba(200,192,176,0.3)'},border:{display:false}}}}});
+  new Chart(document.getElementById('ch2'),{type:'bar',data:{labels:['Design','Dev','QA','Deploy','Research'],datasets:[{data:[1820,2940,1480,680,1120],backgroundColor:['#7eb77f','#c9a96e','#8fb4c9','#d4776b','#6baa7c'],borderRadius:4,borderSkipped:false,borderWidth:2,borderColor:['#5a9a5b','#b09058','#6a9ab0','#b05e52','#4e9060']}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#b5ad9e',font:{size:10,family:'Rubik'}},grid:{color:'rgba(200,192,176,0.3)'},border:{display:false}},y:{ticks:{color:'#7a7262',font:{size:11,weight:'600',family:'Rubik'}},grid:{display:false},border:{display:false}}}}});
+}
+
+function buildAna(){
+  window._a=true;
+  var d=[];for(var i=0;i<30;i++)d.push(Math.floor(Math.random()*8000)+2000);
+  new Chart(document.getElementById('ch-ana'),{type:'bar',data:{labels:Array.from({length:30},function(_,i){return(i+1)+''}),datasets:[{data:d,backgroundColor:'rgba(126,183,127,0.5)',borderColor:'#5a9a5b',borderWidth:1,borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#b5ad9e',font:{size:9,family:'Rubik'},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{display:false},border:{display:false}},y:{ticks:{color:'#b5ad9e',font:{size:10,family:'Rubik'}},grid:{color:'rgba(200,192,176,0.3)'},border:{display:false}}}}});
+}
+
+function setTone(t){
+  document.documentElement.setAttribute('data-tone',t);
+  document.querySelectorAll('.tone-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-t')===t)});
+}
+document.querySelectorAll('.tone-btn').forEach(function(b){
+  b.addEventListener('click',function(){setTone(this.getAttribute('data-t'))});
+});
+
+function openModal(id){
+  var el=document.getElementById(id);
+  if(el)el.classList.add('show');
+}
+function closeModal(id){
+  var el=document.getElementById(id);
+  if(el)el.classList.remove('show');
+}
+document.querySelectorAll('.modal-overlay').forEach(function(o){
+  o.addEventListener('click',function(e){
+    if(e.target===this)this.classList.remove('show');
+  });
+});
+
+renderTabs();
+buildDash();
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-tone="yelp">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,17 +25,10 @@
 [data-tone="purple"]{--ac:#7c3aed;--ac-dk:#6d28d9;--ac-s:rgba(124,58,237,0.06);--ac-link:#7c3aed;--red:#7c3aed;--red-dk:#6d28d9;--red-s:rgba(124,58,237,0.06);--blue:#7c3aed;--blue-s:rgba(124,58,237,0.06);--xd:#c4b8e0;--xh:#8a7ab0;--xa:#7c3aed}
 [data-tone="orange"]{--ac:#ea580c;--ac-dk:#c2410c;--ac-s:rgba(234,88,12,0.06);--ac-link:#ea580c;--red:#ea580c;--red-dk:#c2410c;--red-s:rgba(234,88,12,0.06);--blue:#ea580c;--blue-s:rgba(234,88,12,0.06);--xd:#d4c0a8;--xh:#a08060;--xa:#ea580c}
 [data-tone="mono"]{--ac:#404040;--ac-dk:#2a2a2a;--ac-s:rgba(64,64,64,0.06);--ac-link:#555;--red:#404040;--red-dk:#2a2a2a;--red-s:rgba(64,64,64,0.06);--blue:#555;--blue-s:rgba(64,64,64,0.06);--xd:#c0c0c0;--xh:#808080;--xa:#333}
-[data-tone] .tab-close svg{stroke:var(--xd,#bbb)}[data-tone] .tab:hover .tab-close svg{stroke:var(--xh,#888)}[data-tone] .tab-close:hover svg{stroke:var(--xa,var(--red))}
 [data-tone] .tab.active .tab-dot{background:var(--ac)}[data-tone] .sb-btn:hover,[data-tone] .sb-btn.active{background:var(--ac-s);color:var(--ac)}
 [data-tone] .topnav{background:var(--ac)}[data-tone] .topnav-search button{background:var(--ac-dk)}
 [data-tone] .card-title .dot{background:var(--ac)}[data-tone] .listing-name{color:var(--ac-link)}
 [data-tone] .dt tr:hover td{background:var(--ac-s)}[data-tone] .fi:focus{border-color:var(--ac-link);box-shadow:0 0 0 3px var(--ac-s)}
-.tone-bar{position:fixed;top:64px;right:16px;z-index:100;display:flex;gap:5px;background:#fff;padding:6px 10px;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.12);border:1px solid #eee;align-items:center}
-.tone-label{font-size:0.58rem;color:#999;margin-right:4px;font-weight:600;white-space:nowrap}
-.tone-btn{width:22px;height:22px;border-radius:50%;border:2.5px solid #e0e0e0;cursor:pointer;transition:all 0.2s}
-.tone-btn:hover{transform:scale(1.15)}.tone-btn.active{border-color:#333;box-shadow:0 0 0 2px rgba(0,0,0,0.12)}
-.tone-btn[data-tone="yelp"]{background:#d32323}.tone-btn[data-tone="blue"]{background:#2563eb}.tone-btn[data-tone="mint"]{background:#059669}
-.tone-btn[data-tone="purple"]{background:#7c3aed}.tone-btn[data-tone="orange"]{background:#ea580c}.tone-btn[data-tone="mono"]{background:linear-gradient(135deg,#666,#bbb)}
 /* ===== MODAL ===== */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:500;align-items:center;justify-content:center}
 .modal-overlay.show{display:flex;animation:mFi 0.2s ease}
@@ -85,21 +78,29 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);overflow:hidde
 .sb-sep{width:32px;height:1px;background:var(--bdr-lt);margin:8px 0}
 .sb-spacer{flex:1}
 
-/* ===== TAB BAR (Connected — same bg as content) ===== */
-.tab-bar{height:42px;background:var(--bdr-lt);display:flex;align-items:flex-end;padding:0 12px;gap:2px;overflow-x:auto;flex-shrink:0;scrollbar-width:none}
+
+/* ===== TAB BAR (Smooth curved — Chrome/Edge style) ===== */
+.tab-bar{height:44px;background:var(--bdr-lt);display:flex;align-items:flex-end;padding:0 16px;gap:0;overflow-x:auto;flex-shrink:0;scrollbar-width:none}
 .tab-bar::-webkit-scrollbar{display:none}
-.tab{display:flex;align-items:center;gap:5px;padding:8px 16px;border-radius:10px 10px 0 0;background:var(--bdr-lt);color:var(--tx3);font-size:0.75rem;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;white-space:nowrap;flex-shrink:0;font-family:var(--font)}
-.tab:hover{color:var(--tx2);background:#e8e8e8}
-.tab.active{background:var(--bg);color:var(--tx);box-shadow:0 -1px 4px rgba(0,0,0,0.04)}
+.tab{display:flex;align-items:center;gap:5px;padding:8px 16px;border-radius:12px 12px 0 0;background:transparent;color:var(--tx3);font-size:0.75rem;font-weight:600;cursor:pointer;border:none;transition:color 0.15s,background 0.15s;white-space:nowrap;flex-shrink:0;font-family:var(--font);position:relative;margin:0 2px}
+.tab:hover{color:var(--tx2);background:rgba(0,0,0,0.04)}
+.tab.active{background:var(--bg);color:var(--tx);z-index:2;margin:0 8px}
+.tab.active::before,.tab.active::after{content:'';position:absolute;bottom:0;width:12px;height:12px;background:transparent}
+.tab.active::before{left:-12px;border-bottom-right-radius:12px;box-shadow:6px 0 0 0 var(--bg)}
+.tab.active::after{right:-12px;border-bottom-left-radius:12px;box-shadow:-6px 0 0 0 var(--bg)}
 .tab-dot{width:6px;height:6px;border-radius:50%;background:var(--tx3)}
-.tab.active .tab-dot{background:var(--red)}
+.tab.active .tab-dot{background:var(--ac)}
 .tab-close{width:18px;height:18px;border-radius:50%;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-left:4px;transition:all 0.15s;padding:0}
-.tab-close svg{width:10px;height:10px;stroke:#bbb;stroke-width:2.5;stroke-linecap:round;fill:none}
-.tab:hover .tab-close svg{stroke:#888}
+.tab-close svg{width:10px;height:10px;stroke:var(--xd,#bbb);stroke-width:2.5;stroke-linecap:round;fill:none}
+.tab:hover .tab-close svg{stroke:var(--xh,#888)}
 .tab-close:hover{background:rgba(0,0,0,0.1)}
-.tab-close:hover svg{stroke:var(--red)}
+.tab-close:hover svg{stroke:var(--xa,#d32323)}
 .tab-add{width:32px;height:32px;border-radius:8px;border:none;background:transparent;color:var(--tx3);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-bottom:2px}
 .tab-add:hover{background:rgba(0,0,0,0.04)}
+/* Tone switcher circles */
+.tone-btn{width:20px;height:20px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all 0.2s;flex-shrink:0}
+.tone-btn:hover{transform:scale(1.15);border-color:rgba(0,0,0,0.15)}
+.tone-btn.active{border-color:#fff;box-shadow:0 0 0 2px rgba(0,0,0,0.2)}
 
 /* ===== CONTENT AREA ===== */
 .content-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden}
@@ -152,18 +153,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);overflow:hidde
 @media(max-width:768px){.sidebar{display:none}.mg{grid-template-columns:repeat(2,1fr)}.g2{grid-template-columns:1fr}.topnav-search{max-width:200px}}
 </style>
 </head>
-<body data-tone="yelp">
-
-<!-- TONE SWITCHER -->
-<div class="tone-bar">
-<span class="tone-label">Tone</span>
-<div class="tone-btn active" data-tone="yelp" title="Yelp Red" onclick="setTone('yelp',this)"></div>
-<div class="tone-btn" data-tone="blue" title="Calm Blue" onclick="setTone('blue',this)"></div>
-<div class="tone-btn" data-tone="mint" title="Mint Green" onclick="setTone('mint',this)"></div>
-<div class="tone-btn" data-tone="purple" title="Purple" onclick="setTone('purple',this)"></div>
-<div class="tone-btn" data-tone="orange" title="Orange" onclick="setTone('orange',this)"></div>
-<div class="tone-btn" data-tone="mono" title="Monotone" onclick="setTone('mono',this)"></div>
-</div>
+<body>
 
 <!-- MODALS -->
 <div class="modal-overlay" id="modal-info">
@@ -236,6 +226,14 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);overflow:hidde
 <div class="sb-sep"></div>
 <button class="sb-btn" data-p="settings" data-l="Settings" title="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09"/></svg>설정</button>
 <div class="sb-spacer"></div>
+<div style="display:flex;flex-direction:column;gap:4px;padding:8px 0;align-items:center" title="Color Tone">
+<div class="tone-btn active" data-t="yelp" style="background:#d32323" title="Yelp Red"></div>
+<div class="tone-btn" data-t="blue" style="background:#2563eb" title="Calm Blue"></div>
+<div class="tone-btn" data-t="mint" style="background:#059669" title="Mint Green"></div>
+<div class="tone-btn" data-t="purple" style="background:#7c3aed" title="Purple"></div>
+<div class="tone-btn" data-t="orange" style="background:#ea580c" title="Orange"></div>
+<div class="tone-btn" data-t="mono" style="background:#374151" title="Mono"></div>
+</div>
 </nav>
 
 <!-- CONTENT WRAP -->
@@ -402,10 +400,13 @@ function buildAna(){
   new Chart(document.getElementById('ch-ana'),{type:'bar',data:{labels:Array.from({length:30},function(_,i){return(i+1)+''}),datasets:[{data:d,backgroundColor:'rgba(211,35,35,0.5)',borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#999',font:{size:9},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{display:false},border:{display:false}},y:{ticks:{color:'#999',font:{size:10}},grid:{color:'rgba(0,0,0,0.04)'},border:{display:false}}}}});
 }
 
-function setTone(t,el){
-  document.body.setAttribute('data-tone',t);
-  document.querySelectorAll('.tone-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-tone')===t)});
+function setTone(t){
+  document.documentElement.setAttribute('data-tone',t);
+  document.querySelectorAll('.tone-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-t')===t)});
 }
+document.querySelectorAll('.tone-btn').forEach(function(b){
+  b.addEventListener('click',function(){setTone(this.getAttribute('data-t'))});
+});
 
 function openModal(id){
   var el=document.getElementById(id);
